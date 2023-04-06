@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Sesction 2 -->
+    <h1 id="elementId">getElementById</h1>
+    <input type="text" name="elementName" />
+    <h2 class="elementClass">getElementByClass</h2>
+    <h3>elementByTagName</h3>
+    <h4 class="elementQuerySelector" id="elementQuerySelector" name="elementQuerySelector">elementQuerySelector</h4>
+    <hr />
+    <!-- Section 3 -->
+    <div id="parent">
+      <span class="child">getElementParent</span>
+    </div>
+    <div id="luar">
+      <span class="dalam">getElementChild</span>
+    </div>
+    <ul id="menu">
+      <li>Menu1</li>
+      <li>Menu2</li>
+      <li class="menu4">Menu4</li>
+      <li>Menu5</li>
+      <li>Menu6</li>
+    </ul>
+
+    <div class="main"></div>
+    <div class="menu"></div>
+
+    <a href="https://program.skilvul.com/" target="_blank" id="js">SkillRoom</a>
+    <br /><br /><button id="save">Save</button><br />
+    <br /><button id="update">Update</button>
+
+    <p>Pilih Jenis Kelamin</p>
+    <div>
+      <input type="radio" name="jk" value="Laki-laki" id="lk" />
+      <label for="lk">Laki-laki</label>
+    </div>
+    <div>
+      <input type="radio" name="jk" value="Perempuan" id="pr" />
+      <label for="pr">Perempuan</label>
+    </div>
+    <br />
+    <button id="tampil">Tampil</button> : <span id="output"></span>
+
+    <script>
+      // getElementById
+      let elementId = document.getElementById('elementId');
+      elementId.style = 'color:red';
+      // getElementByName
+      let elementName = document.getElementsByName('elementName')[0];
+      elementName.style = 'color:red';
+      // getElementByClass
+      let elementClass = document.getElementsByClassName('elementClass')[0];
+      elementClass.style = 'color:red';
+      // getElementByTagName
+      let elementTag = document.getElementsByTagName('h3')[0];
+      elementTag.style = 'color:red';
+      // elementQuerySelector
+      let elementQuerySelector = document.querySelector('#elementQuerySelector');
+      elementQuerySelector.style = 'color:red';
+      // getParentElement
+      let elementChild = document.querySelector('.child');
+      let parent = elementChild.parentNode;
+      parent.style = 'background-color:red';
+      // getChildElement
+      let luar = document.querySelector('#luar');
+      let dalam = luar.firstElementChild;
+      dalam.style = 'background-color:blue';
+      // nextElementSibling
+      let menu4 = document.querySelector('.menu4');
+      let menu5 = menu4.nextElementSibling;
+      menu5.style = 'background-color:blue';
+      // CreateElement
+      let div = document.createElement('div');
+      div.innerHTML = '<span>Create Element</span>';
+      document.body.appendChild(div);
+      // appendChild()
+      function createMenu(name) {
+        let spanMenu = document.createElement('h1');
+        spanMenu.textContent = name;
+        return spanMenu;
+      }
+      const menu = document.querySelector('.menu');
+      menu.appendChild(createMenu('menu1'));
+      menu.appendChild(createMenu('menu2'));
+      menu.appendChild(createMenu('menu3'));
+      // get Atribut
+      let tombol = document.getElementById('tombol');
+      if (tombol) {
+        let target = tombol.getAttribute('target');
+        console.log(target);
+      }
+      // Set Atribut
+      let save = document.querySelector('#save');
+      if (save) {
+        save.setAttribute('disabled', '');
+      }
+      // Moouse Event
+      let btnnn = document.querySelector('#update');
+      btnnn.addEventListener('mousedown', function () {
+        btnnn.style = 'color:green';
+      });
+
+      btnnn.addEventListener('mouseup', function () {
+        btnnn.style = 'color:blue';
+      });
+
+      btnnn.addEventListener('click', function () {
+        btnnn.style = 'color:red';
+      });
+
+      const tampil = document.querySelector('#tampil');
+      const output = document.querySelector('#output');
+      const jenisKelamin = document.getElementsByName('jk');
+      tampil.addEventListener('click', () => {
+        let selectedJk;
+        for (const jk of jenisKelamin) {
+          if (jk.checked) {
+            selectedJk = jk.value;
+            break;
+          }
+        }
+        // show the output:
+        output.innerText = selectedJk ? `${selectedJk}` : `Pilih jenis kelamin!`;
+      });
+    </script>
+  </body>
+</html>
